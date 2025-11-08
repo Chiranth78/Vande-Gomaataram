@@ -5,6 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vande Gomaataram</title>
     <link rel="stylesheet" href="../CSS/style.css">
+    <style>
+        .logo__img {
+            width: 48px;
+            height: auto;
+        }
+
+        /* Gallery Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .gallery-item .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-size: 18px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .gallery-item:hover .delete-btn {
+            display: flex;
+        }
+
+        .gallery-item .delete-btn:hover {
+            background: rgba(220, 38, 38, 1);
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -27,6 +109,7 @@
                         <li><a href="#goals" class="nav__link">Introduction</a></li>
                         <li><a href="#gurukula" class="nav__link">Gokula-Gurukula</a></li>
                         <li><a href="#activities" class="nav__link">Activities</a></li>
+                        <li><a href="#gallery" class="nav__link">Gallery</a></li>
                         <li><a href="#devalaya" class="nav__link">Devalaya</a></li>
                         <li><a href="#contact" class="nav__link">Contact us</a></li>
                     </ul>
@@ -53,30 +136,33 @@
     <section id="goals" class="section">
         <div class="container">
             <div class="section__header">
-                <h2 class="section__title">Introduction and Goals of Goshale</h2>
-                <p class="section__subtitle">Our mission to preserve Indian cultural values through cow protection, traditional education, and community service</p>
+                <h2 class="section__title">ವಂದೇ ಗೋ ಮಾತರಂ ಚಾರಿಟಬಲ್ ಟ್ರಸ್ಟ್</h2>
+                <p class="section__subtitle">ಗೋಮಾತೆ ದೇವಾಲಯ - ಸ್ವದೇಶಿ ದನಗಳ ಮತ್ತು ಸ್ವದೇಶಿ ಜನಗಳ ನೆಮ್ಮದಿಯ ತಾಣ</p>
             </div>
             <div class="goals-grid">
                 <div class="goal-card">
                     <div class="goal-card__icon">🐄</div>
-                    <h3 class="goal-card__title">Cow Protection</h3>
-                    <p class="goal-card__description">Preserving and protecting cows as sacred beings, providing them with proper care, shelter, and medical attention while promoting the importance of cow conservation in Indian culture.</p>
+                    <h3 class="goal-card__title">About Gomate Devalaya</h3>
+                    <p class="goal-card__description">'ಗೋಮಾತೆ ದೇವಾಲಯ' ಗೋಶಾಲೆ ಆಗಸ್ಟ್ 2023ಯಲ್ಲಿ ಪ್ರಾರಂಭವಾಯಿತು. ಗೋಮಾತೆ ದೇವಾಲಯ ಗೋಶಾಲೆಯ ಮೂಲ ಉದ್ದೇಶ ಹೆಸರೇ ಸೂಚಿಸುವಂತೆ ನಮ್ಮ ದೇಸಿ ತಳಿ ಹಸುಗಳು ಇರುವಂತಹ ಸ್ಥಳ ಮತ್ತು ಇವುಗಳ ಸಂರಕ್ಷಣೆ. ಗೋವುಗಳು ಎಲ್ಲಿ ಇರುವುದೋ ಅಲ್ಲಿ ಆರೋಗ್ಯ ಹಾಗು ನೆಮ್ಮದಿ ಖಂಡಿತ.</p>
                 </div>
                 <div class="goal-card">
-                    <div class="goal-card__icon">📚</div>
-                    <h3 class="goal-card__title">Traditional Education</h3>
-                    <p class="goal-card__description">Reviving the ancient Gurukula system of education that emphasizes holistic development, moral values, and traditional knowledge alongside modern learning.</p>
+                    <div class="goal-card__icon">🙏</div>
+                    <h3 class="goal-card__title">Our Mission</h3>
+                    <p class="goal-card__description">ಆದ್ದರಿಂದ ನಮ್ಮ ದೇಸಿ ಗೋವುಗಳ ಬಗ್ಗೆ ಆದಷ್ಟು ಹೆಚ್ಚಿನ ಜನಕ್ಕೆ ತಿಳಿಸಿ ಪ್ರತಿ ಹಳ್ಳಿಗಳಲ್ಲಿ ಮತ್ತು ನಗರಗಳಲ್ಲಿ ಗೋಶಾಲೆಗಳು ಹೆಚ್ಚಾಗುವಂತೆ, ಮನೆ ಮನೆಗಳಲ್ಲಿ ಗೋವುಗುಳ ಸಂಖ್ಯೆ ಹೆಚ್ಚಾಗಲಿ ಎಂಬ ಸದ್ದುದ್ದೇಶ.</p>
                 </div>
                 <div class="goal-card">
-                    <div class="goal-card__icon">🕉️</div>
-                    <h3 class="goal-card__title">Spiritual Development</h3>
-                    <p class="goal-card__description">Fostering spiritual growth through meditation, yoga, religious practices, and teaching the profound wisdom embedded in our ancient scriptures and traditions.</p>
+                    <div class="goal-card__icon">👥</div>
+                    <h3 class="goal-card__title">Founders & Contributors</h3>
+                    <p class="goal-card__description">ಇದರ ಪ್ರಮುಖ ಸಂಸ್ಥಾಪಕರು ದಯಾನಂದ್ ಸಾಗರಣ್ಣ ನವರು. ಗೋಶಾಲೆ ಸ್ಥಳಾವಕಾಶ ಮಾಡಿಕೊಟ್ಟಿರುವವರು ಹರೀಶಣ್ಣ ಮತ್ತು ಅವರೊಂದಿಗೆ ಶ್ರೀನಿವಾಸ ಅಣ್ಣ, ಅರುಣ್ ಅಣ್ಣ, ಮುರಳಿ ಅಣ್ಣ, ಸಂತೋಷ್ ಅಣ್ಣ ಮತ್ತು ಹನುಮಂತ ಅಣ್ಣ. ಇವರುಗಳ ಶ್ರಮದಿಂದ ಈ ಗೋಶಾಲೆ ರೂಪುಗೊಂಡಿದೆ.</p>
                 </div>
                 <div class="goal-card">
-                    <div class="goal-card__icon">🤝</div>
-                    <h3 class="goal-card__title">Community Service</h3>
-                    <p class="goal-card__description">Serving the community through various outreach programs, social welfare activities, and initiatives that promote unity and cultural preservation.</p>
+                    <div class="goal-card__icon">❤️</div>
+                    <h3 class="goal-card__title">Our Work & Vision</h3>
+                    <p class="goal-card__description">ಇಲ್ಲಿ ನಾವು ಅನಾರೋಗ್ಯದಿಂದ ಬಳಲುತ್ತಿರುವ ಗೋವುಗಳು ಮತ್ತು ಕಟುಕರಿಗೆ ಕೊಡುತ್ತಿರುವ ಗೋವುಗಳಿಗೆ ಆಶ್ರಯ ನೀಡಿ ಅವುಗಳಿಗೆ ಮರು ಜೀವನವನ್ನು ಕೊಟ್ಟು ನಮ್ಮ ಕರ್ತವ್ಯವನ್ನು ನಿಭಾಯಿಸುತ್ತಿದ್ದೇವೆ. ಮುಂದಿನ ಹೆಜ್ಜೆ ಗೋವುಗಳ ಉತ್ಪನ್ನಗಳಿಂದ ಸ್ವಾವಲಂಬಿ ಗೋಶಾಲೆಯನ್ನಾಗಿ ಮಾಡುವುದು.</p>
                 </div>
+            </div>
+            <div style="margin-top: 3rem; padding: 2rem; background: #f9fafb; border-radius: 8px;">
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #374151;">ಪ್ರಶಾಂತ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕವಾಗಿ ಉನ್ನತಿಗೇರಿಸುವ ವಾತಾವರಣದಲ್ಲಿ ನೆಲೆಗೊಂಡಿರುವ ನಮ್ಮ ಗೋಶಾಲೆಯಲ್ಲಿ ಹುಟ್ಟುಹಬ್ಬಗಳು, ನಾಮಕರಣ ಸಮಾರಂಭಗಳು, ಮದುವೆ ವಾರ್ಷಿಕೋತ್ಸವಗಳು ಮತ್ತು ಕುಟುಂಬದ ವಿಶೇಷ ಕ್ಷಣಗಳನ್ನು ಆಚರಿಸಲು ಉಚಿತವಾಗಿ ವ್ಯವಸ್ಥೆ ಮಾಡಲಾಗುವುದು.</p>
             </div>
         </div>
     </section>
@@ -85,40 +171,54 @@
     <section id="gurukula" class="section section--alt">
         <div class="container">
             <div class="section__header">
-                <h2 class="section__title">Gokula-Gurukula</h2>
+                <h2 class="section__title">ಗೋಕುಲ ಗುರುಕುಲ – ಉತ್ತಮನಾಗು ಉಪಕಾರಿಯಾಗು</h2>
                 <p class="section__subtitle">Traditional educational institution following the time-tested Gurukula system of learning</p>
             </div>
             <div class="gurukula-content">
                 <div class="gurukula-info">
-                    <h3>Philosophy and Approach</h3>
-                    <p>Our Gokula-Gurukula follows the ancient Indian tradition of holistic education where students live with their teacher (Guru) in a residential setting. This system emphasizes:</p>
+                    <h3>About Gokula Gurukula</h3>
+                    <p>ಗೋಮತೇ ದೇವಾಲಯದ ಪ್ರಥಮ ವಾರ್ಷಿಕೋತ್ಸವದ ಅಂಗವಾಗಿ, ಸಂಸ್ಥಾಪಕ ದಯಾನಂದ ಸಾಗರ್ ಅಣ್ಣ ಅವರಿಂದ ಒಂದು ವಿಶಿಷ್ಟ ಸಾಮಾಜಿಕ ಸೇವಾ ಯೋಜನೆ ರೂಪಿತವಾಯಿತು — ಮಕ್ಕಳಿಗಾಗಿ ಉಚಿತವಾಗಿ ಗುರುಕುಲ ಶಿಕ್ಷಣವನ್ನು ಆರಂಭಿಸುವುದು. ಗೋಕುಲ ಗುರುಕುಲದಲ್ಲಿ, ಜೀವನದ ಮೌಲ್ಯದ ಶಿಕ್ಷಣವನ್ನು ವೈಯಕ್ತಿಕವಾಗಿ, ಕೌಟುಂಬಿಕವಾಗಿ, ವ್ಯಾವಹಾರಿಕವಾಗಿ, ಪ್ರಾಕೃತಿಕವಾಗಿ ಸಾಮಾಜಿಕವಾಗಿ ಮತ್ತು ಆಧ್ಯಾತ್ಮಿಕವಾಗಿ ಈ 6 ಅಂಶಗಳನ್ನು ಒಳಗೊಂಡು ಶಿಕ್ಷಣವನ್ನು ನೀಡುವುದು.</p>
+                    
+                    <h4 style="margin-top: 2rem;">Program Details</h4>
                     <ul class="feature-list">
-                        <li>Character development alongside academic excellence</li>
-                        <li>Direct teacher-student relationship fostering personal growth</li>
-                        <li>Integration of practical life skills with theoretical knowledge</li>
-                        <li>Emphasis on moral and spiritual values</li>
-                        <li>Connection with nature and sustainable living practices</li>
-                        <li>Preservation of traditional arts, crafts, and knowledge systems</li>
+                        <li>ಪ್ರತಿ ಎರಡನೇ ಮತ್ತು ನಾಲ್ಕನೇ ಭಾನುವಾರಗಳಲ್ಲಿ ಒಂದು ವರ್ಷದವರೆಗೆ</li>
+                        <li>5ರಿಂದ 12 ವರ್ಷದೊಳಗಿನ ಮಕ್ಕಳಿಗೆ</li>
+                        <li>ಜುಲೈ 2024ರಲ್ಲಿ ಗೋಕುಲ ಗುರುಕುಲ ಆರಂಭವಾಯಿತು</li>
+                        <li>ಪ್ರಥಮ ಬ್ಯಾಚ್‌ಗೆ ನಚಿಕೇತ ಬ್ಯಾಚ್ ಎಂಬ ಹೆಸರು - 46 ಮಕ್ಕಳು ನೋಂದಾಯಿಸಿಕೊಂಡರು</li>
+                        <li>ತರಗತಿಯ ಸಮಯ: ಬೆಳಿಗ್ಗೆ 9:00 ರಿಂದ ಮಧ್ಯಾಹ್ನ 2:00 ಗಂಟೆಯವರೆಗೆ</li>
+                        <li>ಮಕ್ಕಳಿಗೆ, ಪ್ರಬಂಧಕರಿಗೆ ಮತ್ತು ಶಿಕ್ಷಕರಿಗೆ ಪಾನೀಯ ಮತ್ತು ಪ್ರಸಾದ ಉಚಿತ</li>
                     </ul>
                 </div>
                 <div class="gurukula-features">
                     <div class="feature-card">
-                        <h4>Sanskrit & Vedic Studies</h4>
-                        <p>Deep study of Sanskrit language and Vedic literature</p>
+                        <h4>ನಿತ್ಯ ಮಂತ್ರ ಪಠಣೆ</h4>
+                        <p>ಭಗವದ್ಗೀತೆ, ಹನುಮಾನ್ ಚಾಲೀಸಾ ಪಾಠ ಮತ್ತು ಭಜನೆಗಳು</p>
                     </div>
                     <div class="feature-card">
-                        <h4>Modern Curriculum</h4>
-                        <p>Integration of contemporary subjects with traditional knowledge</p>
+                        <h4>ಯೋಗಾಸನಗಳು</h4>
+                        <p>ದೇಶಿ ಆಟಗಳು, ಕೃಷಿ, ಮತ್ತು ಪರಿಸರ ಅರಿವು</p>
                     </div>
                     <div class="feature-card">
-                        <h4>Practical Skills</h4>
-                        <p>Hands-on learning through agriculture, crafts, and life skills</p>
+                        <h4>ಪ್ರಕೃತಿ ಸ್ನೇಹ</h4>
+                        <p>ಹಕ್ಕಿ ಮತ್ತು ಪ್ರಾಣಿಗಳ ಜೊತೆ ಸ್ನೇಹ, ದೇವಾಲಯ ಭೇಟಿಗಳು</p>
                     </div>
                     <div class="feature-card">
-                        <h4>Spiritual Practice</h4>
-                        <p>Daily meditation, yoga, and spiritual disciplines</p>
+                        <h4>ಗೋವು ಶಿಕ್ಷಣ</h4>
+                        <p>ದೇಸಿಹಸುಗಳ ಮಹತ್ವ ಮತ್ತು ಹಸು ಉತ್ಪನ್ನಗಳ ಉಪಯೋಗ</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>ವ್ಯಕ್ತಿತ್ವ ವಿಕಾಸ</h4>
+                        <p>ದೇಶಭಕ್ತಿ ಹಾಗೂ ಮೌಲ್ಯಾಧಾರಿತ ವ್ಯಕ್ತಿತ್ವ ವಿಕಾಸ</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>ಸಾಂಸ್ಕೃತಿಕ ಶಿಕ್ಷಣ</h4>
+                        <p>ಭಾರತೀಯ ಸಂಸ್ಕೃತಿ, ಹಬ್ಬಗಳ ಮಹತ್ವ, ಸಂಪ್ರದಾಯಗಳ ಬಗ್ಗೆ ಅರಿವು</p>
                     </div>
                 </div>
+            </div>
+            <div style="margin-top: 2rem; padding: 2rem; background: white; border-radius: 8px;">
+                <h4>ಪೋಷಕರ ಜಾಗೃತಿ</h4>
+                <p style="margin-top: 1rem; line-height: 1.8;">ಈ ಜೀವನಶೈಲಿಯಲ್ಲಿ ಮಕ್ಕಳ ಶಾರೀರಿಕ ಮತ್ತು ಮಾನಸಿಕ ಬೆಳವಣಿಗೆಗೆ ಪೋಷಕರ ಪಾತ್ರವನ್ನು ಜಾಗೃತಗೊಳಿಸಲು ಪೋಷಕರಿಗೆ ಕೂಡ ವಿಶೇಷ ಅವಧಿಗಳನ್ನು ನೀಡಲಾಗುತ್ತಿದೆ. ಒಂದು ವರ್ಷದ ಗುರುಕುಲ ಪ್ರಯಾಣವನ್ನು ಪೂರ್ಣಗೊಳಿಸುತ್ತಿರುವ ಸಂತೋಷ ನಮಗೆ ಇದ್ದರೆ, ಮಕ್ಕಳಲ್ಲಿ ಕಂಡುಬಂದ ಬದಲಾವಣೆಗಳ ಕುರಿತು ಪೋಷಕರಿಂದ ಉತ್ತಮ ಪ್ರತಿಕ್ರಿಯೆ ನಮಗೆ ದೊರೆಯುತ್ತಿದೆ.</p>
             </div>
         </div>
     </section>
@@ -127,106 +227,102 @@
     <section id="activities" class="section">
         <div class="container">
             <div class="section__header">
-                <h2 class="section__title">Our Activities</h2>
+                <h2 class="section__title">Our Activities & Future Plans</h2>
                 <p class="section__subtitle">Comprehensive programs dedicated to preserving tradition and serving the community</p>
             </div>
             <div class="activities-grid">
                 <div class="activity-card">
                     <div class="activity-card__header">
-                        <span class="activity-card__icon">🐄</span>
-                        <h3>Cow Protection and Care</h3>
+                        <span class="activity-card__icon">📚</span>
+                        <h3>ದ್ವಿತೀಯ ಬ್ಯಾಚ್ — ಮಾರ್ಕಂಡೇಯ ಬ್ಯಾಚ್</h3>
                     </div>
-                    <p>Comprehensive cow care including veterinary services, organic farming, and dairy production using traditional methods.</p>
+                    <p>ಪ್ರತಿ ಭಾನುವಾರ, ನಾಲ್ಕು ತಿಂಗಳ ಅವಧಿಗೆ ಪ್ರಾರಂಭಿಸಲಾಗಿದೆ</p>
                 </div>
                 <div class="activity-card">
                     <div class="activity-card__header">
-                        <span class="activity-card__icon">📖</span>
-                        <h3>Traditional Education Programs</h3>
+                        <span class="activity-card__icon">🚐</span>
+                        <h3>ಮೊಬೈಲ್ ಗುರುಕುಲ</h3>
                     </div>
-                    <p>Sanskrit classes, Vedic studies, and traditional arts education for students of all ages.</p>
+                    <p>ಬಡ ಬಡಾವಣೆಗಳು ಹಾಗೂ ಗ್ರಾಮೀಣ ಪ್ರದೇಶಗಳಿಗೆ ಭೇಟಿ ನೀಡಿ, ಶಾಲೆಗೆ ಹೋಗಲಾರದ ಮಕ್ಕಳನ್ನು ಗುರುಕುಲ ಶಿಕ್ಷಣದ ಒಳವಲಯಕ್ಕೆ ತರಲು ಉದ್ದೇಶಿಸಲಾಗಿದೆ</p>
                 </div>
                 <div class="activity-card">
                     <div class="activity-card__header">
-                        <span class="activity-card__icon">🎭</span>
-                        <h3>Cultural and Religious Activities</h3>
+                        <span class="activity-card__icon">🌟</span>
+                        <h3>ವಿಸ್ತೃತ ತರಗತಿಗಳು</h3>
                     </div>
-                    <p>Festivals, cultural programs, religious ceremonies, and preservation of traditional performing arts.</p>
+                    <p>ಮೊದಲ ಬ್ಯಾಚ್ ಮಕ್ಕಳಿಗೆ ಪ್ರತಿ ಮೊದಲ ಭಾನುವಾರ ಬೆಳಿಗ್ಗೆ 9 ರಿಂದ ಸಂಜೆ 6 ಗಂಟೆಯವರೆಗೆ ವಿಭಿನ್ನವಾಗಿ ತರಗತಿಗಳನ್ನು ನೀಡಲಾಗುವುದು</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-card__header">
+                        <span class="activity-card__icon">🕉️</span>
+                        <h3>ಲಲಿತಾ ಸಹಸ್ರನಾಮ</h3>
+                    </div>
+                    <p>ಲಲಿತಾ ಸಹಸ್ರನಾಮ, ವಿಷ್ಣು ಸಹಸ್ರನಾಮ ಸೇರಿದಂತೆ ಆಧ್ಯಾತ್ಮಿಕ ಪಾಠಗಳು</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-card__header">
+                        <span class="activity-card__icon">🏊</span>
+                        <h3>ಕ್ರೀಡೆ ಮತ್ತು ಆಟಗಳು</h3>
+                    </div>
+                    <p>ಈಜು, ಕಬಡ್ಡಿ ಮತ್ತು ಇತರ ಪಾರಂಪರಿಕ ಆಟಗಳು</p>
                 </div>
                 <div class="activity-card">
                     <div class="activity-card__header">
                         <span class="activity-card__icon">🌱</span>
-                        <h3>Community Outreach Programs</h3>
+                        <h3>ಕೃಷಿ ಮತ್ತು ಕಲೆ</h3>
                     </div>
-                    <p>Health camps, educational workshops, and support programs for underprivileged communities.</p>
+                    <p>ಕೃಷಿ ಚಟುವಟಿಕೆಗಳು, ಪಾರಂಪರಿಕ ನೃತ್ಯ, ಸಂಗೀತ, ಕಲೆ-ಕುಶಲತೆಗಳು ಮತ್ತು ಮೂಲಭೂತ ಜೀವನಕೌಶಲ್ಯಗಳ ಕಲಿಕೆ</p>
                 </div>
-                <div class="activity-card">
-                    <div class="activity-card__header">
-                        <span class="activity-card__icon">🙏</span>
-                        <h3>Volunteer Training and Development</h3>
+            </div>
+            <div style="margin-top: 3rem; padding: 2rem; background: #f0f9ff; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                <h3 style="color: #1e40af; margin-bottom: 1rem;">ನಮ್ಮ ಧ್ಯೇಯ</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #1e3a8a;">ಪ್ರತಿಯೊಬ್ಬ ಮಕ್ಕಳಲ್ಲಿರುವ ಶಕ್ತಿ ಮತ್ತು ಪ್ರತಿಭೆಯನ್ನು ಗುರುತಿಸಿ, ಅವನನ್ನು ಸ್ವಾವಲಂಬಿಯಾಗಿ, ಸಂಸ್ಕಾರಯುತವಾಗಿ, ಮೌಲ್ಯಾಧಾರಿತ ವ್ಯಕ್ತಿಯಾಗುವಂತೆ ರೂಪಿಸುವುದೇ ಗೋಕುಲ ಗುರುಕುಲದ ಲಕ್ಷ್ಯ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section">
+        <div class="container">
+            <div class="section__header">
+                <h2 class="section__title">Gallery</h2>
+                <p class="section__subtitle">Moments from our Goshale and Gurukula activities</p>
+            </div>
+            
+            <div style="margin-bottom: 2rem; text-align: center;">
+                <input type="file" id="galleryInput" accept="image/*" multiple style="display: none;">
+                <button onclick="document.getElementById('galleryInput').click()" class="btn btn--primary">
+                    📸 Add Photos
+                </button>
+                <button onclick="clearGallery()" class="btn btn--outline" style="margin-left: 1rem;">
+                    🗑️ Clear Gallery
+                </button>
+            </div>
+
+            <div id="galleryGrid" class="gallery-grid">
+                <!-- Gallery images will be dynamically added here -->
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/8B4513/FFFFFF?text=Goshale" alt="Goshale">
+                    <div class="gallery-overlay">
+                        <span>Sample Image 1</span>
                     </div>
-                    <p>Regular training sessions for volunteers to develop skills in various service areas.</p>
                 </div>
-                <div class="activity-card">
-                    <div class="activity-card__header">
-                        <span class="activity-card__icon">🌍</span>
-                        <h3>Environmental Conservation</h3>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/228B22/FFFFFF?text=Gurukula" alt="Gurukula">
+                    <div class="gallery-overlay">
+                        <span>Sample Image 2</span>
                     </div>
-                    <p>Tree plantation drives, organic farming, and sustainable living practices promotion.</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/400x300/FF8C00/FFFFFF?text=Activities" alt="Activities">
+                    <div class="gallery-overlay">
+                        <span>Sample Image 3</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gomathe Devalaya Section -->
-    <section id="devalaya" class="section section--alt">
-        <div class="container">
-            <div class="section__header">
-                <h2 class="section__title">About Gomathe Devalaya and Gokula-Gurukula</h2>
-                <p class="section__subtitle">Sacred temple complex integrated with our educational institution</p>
-            </div>
-            <div class="devalaya-content">
-                <div class="devalaya-info">
-                    <h3>The Sacred Complex</h3>
-                    <p>Gomathe Devalaya serves as the spiritual heart of our institution, where the divine presence guides our educational and service activities. The temple is dedicated to Gomatha (the sacred cow) and represents the harmonious integration of spiritual and educational pursuits.</p>
-                    
-                    <h4>Features of the Complex:</h4>
-                    <ul class="feature-list">
-                        <li>Main temple dedicated to Gomatha with daily ritual worship</li>
-                        <li>Educational halls and residential facilities for students</li>
-                        <li>Library containing ancient scriptures and modern educational materials</li>
-                        <li>Meditation halls for spiritual practice and contemplation</li>
-                        <li>Organic garden and cow shelter within the premises</li>
-                        <li>Cultural performance spaces for traditional arts</li>
-                    </ul>
-                </div>
-                <div class="temple-activities">
-                    <h4>Daily Activities</h4>
-                    <div class="activity-schedule">
-                        <div class="schedule-item">
-                            <span class="time">5:00 AM</span>
-                            <span class="activity">Morning prayers and meditation</span>
-                        </div>
-                        <div class="schedule-item">
-                            <span class="time">6:00 AM</span>
-                            <span class="activity">Cow care and dairy activities</span>
-                        </div>
-                        <div class="schedule-item">
-                            <span class="time">8:00 AM</span>
-                            <span class="activity">Educational classes begin</span>
-                        </div>
-                        <div class="schedule-item">
-                            <span class="time">12:00 PM</span>
-                            <span class="activity">Midday prayers and prasadam</span>
-                        </div>
-                        <div class="schedule-item">
-                            <span class="time">6:00 PM</span>
-                            <span class="activity">Evening aarti and cultural programs</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section">
@@ -240,7 +336,9 @@
                     <h3>Contact Information</h3>
                     <div class="contact-details">
                         <div class="contact-item">
-                            <span class="contact-icon">📍</span>
+              
+              
+                          <span class="contact-icon">📍</span>
                             <div>
                                 <h4>Address</h4>
                                 <p>Karnataka, India</p>
@@ -366,5 +464,86 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+        // Gallery functionality
+        const galleryInput = document.getElementById('galleryInput');
+        const galleryGrid = document.getElementById('galleryGrid');
+
+        // Load saved images from memory on page load
+        let savedImages = [];
+
+        galleryInput.addEventListener('change', function(e) {
+            const files = e.target.files;
+            
+            for (let file of files) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        const imgData = {
+                            src: event.target.result,
+                            name: file.name
+                        };
+                        savedImages.push(imgData);
+                        addImageToGallery(imgData);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            }
+            
+            // Reset input
+            galleryInput.value = '';
+        });
+
+        function addImageToGallery(imgData) {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            
+            galleryItem.innerHTML = `
+                <img src="${imgData.src}" alt="${imgData.name}">
+                <button class="delete-btn" onclick="deleteImage(this)" title="Delete image">×</button>
+                <div class="gallery-overlay">
+                    <span>${imgData.name}</span>
+                </div>
+            `;
+            
+            galleryGrid.appendChild(galleryItem);
+        }
+
+        function deleteImage(btn) {
+            const item = btn.parentElement;
+            const img = item.querySelector('img');
+            const imgSrc = img.src;
+            
+            // Remove from saved images array
+            savedImages = savedImages.filter(img => img.src !== imgSrc);
+            
+            // Remove from DOM with animation
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                item.remove();
+            }, 300);
+        }
+
+        function clearGallery() {
+            if (confirm('Are you sure you want to clear all gallery images?')) {
+                // Keep only placeholder images (first 3 items)
+                const items = galleryGrid.querySelectorAll('.gallery-item');
+                items.forEach((item, index) => {
+                    if (index >= 3) { // Keep first 3 placeholder images
+                        item.remove();
+                    }
+                });
+                savedImages = [];
+            }
+        }
+
+        // Mobile menu toggle
+        document.querySelector('.nav__toggle')?.addEventListener('click', function() {
+            document.querySelector('.nav__list')?.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
